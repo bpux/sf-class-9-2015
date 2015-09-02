@@ -6,10 +6,12 @@ public class Student implements Comparable<Student> {
 
     private String name;
     private float gpa;
+    private CourseName courseName;
 
-    public Student(String name, float gpa) {
+    public Student(String name, float gpa, CourseName cn) {
         this.name = name;
         this.gpa = gpa;
+        this.courseName = cn;
     }
 
     public String getName() {
@@ -28,9 +30,17 @@ public class Student implements Comparable<Student> {
         this.gpa = gpa;
     }
 
+    public CourseName getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(CourseName courseName) {
+        this.courseName = courseName;
+    }
+
     @Override
     public String toString() {
-        return "Student{" + "name=" + name + ", gpa=" + gpa + '}';
+        return "Student{" + "name=" + name + ", gpa=" + gpa + ", courseName=" + courseName + '}';
     }
 
     @Override
@@ -39,18 +49,59 @@ public class Student implements Comparable<Student> {
 
     }
 
+//    public static Comparator<Student> getGPAComparator() {
+//        return new Comparator<Student>() {
+//
+//            @Override
+//            public int compare(Student o1, Student o2) {
+//                return new Float(o1.gpa).compareTo(o2.gpa);
+//            }
+//
+//        };
+//    }
+    //
+    //    public static Comparator<Student> getGPAComparator() {
+    //        return gpaComparator;
+    //    }
+    //    
+    //    private static Comparator<Student> gpaComparator = new /*GPAComparator();
+    //    
+    //    private static class GPAComparator implements */Comparator<Student>() {
+    //
+    //        @Override
+    //        public int compare(Student o1, Student o2) {
+    //            return new Float(o1.gpa).compareTo(o2.gpa);
+    //        }
+    //
+    //    };
+    //    
+    //    private static Comparator<Student> gpaComparator = new GPAComparator();
+    //    
+    //    private static class GPAComparator implements Comparator<Student> {
+    //
+    //        @Override
+    //        public int compare(Student o1, Student o2) {
+    //            return new Float(o1.gpa).compareTo(o2.gpa);
+    //        }
+    //
+    //    }
     public static Comparator<Student> getGPAComparator() {
         return gpaComparator;
     }
-    
-    private static Comparator<Student> gpaComparator = new GPAComparator();
-    
-    private static class GPAComparator implements Comparator<Student> {
+    private static Comparator<Student> gpaComparator = 
+        (o1, o2) -> new Float(o1.gpa).compareTo(o2.gpa);
 
-        @Override
-        public int compare(Student o1, Student o2) {
-            return new Float(o1.gpa).compareTo(o2.gpa);
-        }
+//    private static Comparator<Student> gpaComparator = (Student o1, Student o2)
+//        -> /*{*/ /* return */ new Float(o1.gpa).compareTo(o2.gpa)/*;*/ /*}*/;
 
-    }
+//    private static Comparator<Student> gpaComparator = /* new Comparator<Student>() { */
+//
+//        /*@Override
+//        public int compare*/(Student o1, Student o2) -> {
+////            System.out.println("in lambda...");
+//            return new Float(o1.gpa).compareTo(o2.gpa);
+//        }
+//
+//    /*}*/;
+
 }
