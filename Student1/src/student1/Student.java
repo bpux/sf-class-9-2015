@@ -1,6 +1,7 @@
 package student1;
 
 import java.util.Comparator;
+import java.util.function.Predicate;
 
 public class Student implements Comparable<Student> {
 
@@ -103,5 +104,10 @@ public class Student implements Comparable<Student> {
 //        }
 //
 //    /*}*/;
-
+    public static Predicate<Student> getSmartnessPredicate(final float threshold) {
+//        int s; // Must not have variables in scope here that are used for lambda method args
+//        threshold += 0.1F; // NO NO NO Must be final!
+        return theStudent -> theStudent.getGpa() > threshold;
+        
+    }
 }

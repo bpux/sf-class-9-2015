@@ -18,6 +18,9 @@ public class Student1 {
         return result;
     } 
     
+    public static <T> Predicate<T> and(Predicate<T> p1, Predicate<T> p2) {
+        return (x) -> p1.test(x) && p2.test(x);
+    }
     
     public static void main(String[] args) {
         List<Student> ls = new ArrayList<>();
@@ -48,6 +51,14 @@ public class Student1 {
         List<String> lstr = Arrays.asList("Fred", "Jim", "Sheila", "William", "Toby");
         List<String> longNames = filter(lstr, (s) -> s.length()>5);
         System.out.println("Long names " + longNames);
-    }
+        
+        List<Student> notSmartLongNames =
+            filter(ls, and(s->s.getGpa() < 3.8F, s->s.getName().length() > 3));
+        System.out.println("nsln " + notSmartLongNames);
+        
+        System.out.println("smartish " + filter(ls, Student.getSmartnessPredicate(3.0F)));
+        System.out.println("smartish++ " + filter(ls, Student.getSmartnessPredicate(3.6F)));
+        
+    } 
     
 }
