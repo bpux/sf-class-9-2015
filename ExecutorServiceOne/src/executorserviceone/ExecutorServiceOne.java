@@ -23,7 +23,6 @@ public class ExecutorServiceOne {
             System.out.println(name + " completing...");
             return name;
         }
-        
     }
     
     private static final int JOB_COUNT = 4;
